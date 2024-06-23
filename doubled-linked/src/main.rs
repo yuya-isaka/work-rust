@@ -5,18 +5,22 @@ use std::rc::Rc;
 
 // RefCell
 // 内部可変性を提供するための型。実行時に借用規則をチェックする。
-// borrow_mut ... RefCell のメソッド。内部の値の可変参照を取得
-// into_inner ... RefCell のメソッド。RefCell の内部の値の所有権を取得
+
+// borrow_mut() ... RefCell のメソッド。内部の値の可変参照を取得
+// into_inner() ... RefCell のメソッド。RefCell の内部の値の所有権を取得
 
 // Rc
 // 参照カウントを使って所有権を共有するための型。
 // 複数の所有権を持つことが可能
-// clone ... Rc のメソッド。Rc の参照カウントを増やし新しいRcインスタンスを生成
-// try_unwrap ... Rc のメソッド。Rc の参照カウントが1の場合、内部の値を取り出す（他に参照がある場合は、失敗する）所有権を取得
+
+// AA.clone()      ... Rc のメソッド。Rc の参照カウントを増やし新しいRcインスタンスを生成
+// Rc::try_unwrap  ... Rc の関連関数。Rc の参照カウントが1の場合、内部の値を取り出す（他に参照がある場合は、失敗する）所有権を取得
 
 // Option
-// take ... Option のメソッド。Some の値を取り出し、None を代入
-// map ... Option のメソッド。Some の値にクロージャを適用し、Some の値を返す
+// AA.take()       ... Option のメソッド。Some の値を取り出し、None を代入
+// AA.map()        ... Option のメソッド。Some の値にクロージャを適用し、Some の値を返す
+
+// unwrap()        ... Result のメソッド。Ok の値を取り出す。Err の場合は panic!
 
 type Link<T> = Option<Rc<RefCell<Node<T>>>>;
 

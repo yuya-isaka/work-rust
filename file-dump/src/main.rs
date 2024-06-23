@@ -1,9 +1,28 @@
-use std::io::Read;
+use std::env;
+use std::fs;
+use std::io::{self, Read};
 const BYTES_LINE: usize = 16;
 
-fn main() -> std::io::Result<()> {
-    let arg = std::env::args().nth(1).expect("no argument");
-    let mut file = std::fs::File::open(arg).expect("cannot open file");
+// io::Result<()>
+//                           ... io::Result型の値を返す
+// env::args().nth(1)
+//                           ... コマンドライン引数を取得
+// fs::File::open()
+//                           ... ファイルを開く
+// file.read_exact(&mut buf)
+//                           ... バッファに読み込む
+// print!()
+//                           ... 標準出力
+// is_ascii_alphanumeric()
+//                           ... ASCIIの英数字かどうか
+// expect()
+//                           ... Option型の値がNoneだった場合にエラーメッセージを表示
+// is_ok()
+//                           ... Result型の値がOkだった場合にtrueを返す
+
+fn main() -> io::Result<()> {
+    let arg = env::args().nth(1).expect("no argument");
+    let mut file = fs::File::open(arg).expect("cannot open file");
 
     let mut pos = 0;
     let mut buf = [0; BYTES_LINE];
