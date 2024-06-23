@@ -1,6 +1,7 @@
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
+use std::process;
 
 // io::Result<()>
 //                           ... io::Result型の値を返す
@@ -35,14 +36,14 @@ fn main() -> io::Result<()> {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 || args.len() > 3 {
         eprintln!("Usage: {} n [file]", args[0]);
-        std::process::exit(1);
+        process::exit(1);
     }
 
     let lines: usize = match args[1].parse() {
         Ok(n) => n,
         Err(_) => {
             eprintln!("Invalid number: {}", args[1]);
-            std::process::exit(1);
+            process::exit(1);
         }
     };
 
